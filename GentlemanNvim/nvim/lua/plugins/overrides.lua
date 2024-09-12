@@ -20,7 +20,7 @@ return {
     "neovim/nvim-lspconfig",
     events = "VeryLazy",
     opts = {
-      inlay_hints = { enabled = false },
+      inlay_hints = { enabled = true },
       servers = {
         angularls = {
           root_dir = function(fname)
@@ -30,4 +30,16 @@ return {
       },
     },
   },
+
+  -- eslint config
+  -- require("lspconfig").eslint.setup({
+  --   on_attach = function(client, bufnr)
+  --     vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
+  --     -- Puedes agregar más opciones si deseas
+  --   end,
+  --   settings = {
+  --     format = { enable = true },
+  --   },
+  --   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
+  -- }),
 }

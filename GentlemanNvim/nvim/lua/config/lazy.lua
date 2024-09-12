@@ -8,17 +8,28 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 -- fix copy and paste in wsl
 if vim.fn.has("wsl") == 1 then
+  local copy = { "/mnt/c/Windows/System32/clip.exe" }
+  local paste = {
+    "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+    "-NonInteractive",
+    "-NoProfile",
+    "-NoLogo",
+    "-c",
+    '[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+  }
+  -- Linux (WSL2) using host clipboard
   vim.g.clipboard = {
     name = "WslClipboard",
+    -- use win32yank.exe from windows neovim
     copy = {
-      ["+"] = "/mnt/c/Windows/System32/clip.exe",
-      ["*"] = "/mnt/c/Windows/System32/clip.exe",
+      ["+"] = copy,
+      ["*"] = copy,
     },
     paste = {
-      ["+"] = '/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write(%(Get-Clipboard -Raw).toString().replace("`r", ""))',
-      ["*"] = '/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe -c [Console]::Out.Write(%(Get-Clipboard -Raw).toString().replace("`r", ""))',
+      ["+"] = paste,
+      ["*"] = paste,
     },
-    cache_enabled = 0,
+    cache_enabled = false,
   }
 end
 

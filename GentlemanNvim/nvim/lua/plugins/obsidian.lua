@@ -8,7 +8,7 @@ return {
     workspaces = {
       {
         name = "GentlemanNotes",
-        path = "/your/notes/path",
+path = '/home/jaes/dev/notes'
       },
     },
     completion = {
