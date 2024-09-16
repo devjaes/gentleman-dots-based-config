@@ -7,8 +7,8 @@ return {
   opts = {
     workspaces = {
       {
-        name = "GentlemanNotes",
-path = '/home/jaes/dev/notes'
+        name = "DevjaesNotes",
+        path = "/home/jaes/dev/notes",
       },
     },
     completion = {

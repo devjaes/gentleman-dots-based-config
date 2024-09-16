@@ -1,12 +1,9 @@
 return {
-
   -- change trouble config
   {
     "folke/trouble.nvim",
-    -- opts will be merged with the parent spec
     opts = { use_diagnostic_signs = true },
   },
-
   -- add symbols-outline
   {
     "simrat39/symbols-outline.nvim",
@@ -14,32 +11,40 @@ return {
     keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
     config = true,
   },
-
-  -- remove inlay_hints from default
+  -- Configuración para conform.nvim (formateador)
   {
-    "neovim/nvim-lspconfig",
-    events = "VeryLazy",
+    "stevearc/conform.nvim",
     opts = {
-      inlay_hints = { enabled = true },
-      servers = {
-        angularls = {
-          root_dir = function(fname)
-            return require("lspconfig.util").root_pattern("angular.json", "project.json")(fname)
-          end,
-        },
+      formatters_by_ft = {
+        javascript = { "prettier", "eslint_d" },
+        typescript = { "prettier", "eslint_d" },
+        javascriptreact = { "prettier", "eslint_d" },
+        typescriptreact = { "prettier", "eslint_d" },
+        vue = { "prettier", "eslint_d" },
+        html = { "prettier" },
+        css = { "prettier" },
+        json = { "prettier" },
+        lua = { "stylua" },
+      },
+      -- format_on_save = function(bufnr)
+      --   if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+      --     return
+      --   end
+      --   return { timeout_ms = 500, lsp_fallback = true }
+      -- end,
+    },
+  },
+  -- Configuración para nvim-lint (linter)
+  {
+    "mfussenegger/nvim-lint",
+    opts = {
+      linters_by_ft = {
+        javascript = { "eslint_d" },
+        typescript = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+        vue = { "eslint_d" },
       },
     },
   },
-
-  -- eslint config
-  -- require("lspconfig").eslint.setup({
-  --   on_attach = function(client, bufnr)
-  --     vim.api.nvim_set_option_value("omnifunc", "v:lua.vim.lsp.omnifunc", { buf = bufnr })
-  --     -- Puedes agregar más opciones si deseas
-  --   end,
-  --   settings = {
-  --     format = { enable = true },
-  --   },
-  --   filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
-  -- }),
 }
