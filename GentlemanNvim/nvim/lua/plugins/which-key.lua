@@ -14,4 +14,11 @@ return {
     },
     { "<leader>o", group = "Obsidian" },
   },
+  opts = {
+    icons = {
+      rules = {
+        { plugin = "copilot.lua", icon = " ", color = "orange" },
+      },
+    },
+  },
 }
