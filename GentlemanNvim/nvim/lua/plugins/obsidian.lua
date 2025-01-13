@@ -3,6 +3,7 @@ return {
   version = "*", -- recommended, use latest release instead of latest commit
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "hrsh7th/nvim-cmp",
   },
   opts = {
     workspaces = {
@@ -12,7 +13,7 @@ return {
       },
     },
     completion = {
-      nvim_cmp = true,
+      blink_cmp = true,
       min_chars = 2,
     },
     notes_subdir = "limbo",
